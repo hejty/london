@@ -1,0 +1,29 @@
+{
+  "name": "London",
+  "version": "0.0.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "animation",
+    "london",
+    "snapsvg",
+    "svg"
+  ],
+  "author": "Lubos Belak & Peter Rovder",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-livereload": "^3.8.0",
+    "http": "0.0.0",
+    "st": "^0.5.5",
+    "vinyl-transform": "^1.0.0"
+  },
+  "dependencies": {
+    "snapsvg": "^0.4.0"
+  }
+}
