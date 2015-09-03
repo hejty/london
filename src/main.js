@@ -24,6 +24,8 @@ Snap.load('london.svg', response => {
       ramp1 = response.select('#Ramp1'),
       ramp2 = response.select('#Ramp2');
 
+  sky.attr({fill: "#178BFF"});
+
   let infiniteRotation = (object, x, y, speed) => {
      // Reset
     object.transform(`r0, ${x}, ${y}`);
@@ -50,6 +52,17 @@ Snap.load('london.svg', response => {
     object.parent().animate({
       transform: `r${direction}360, ${bbox.cx}, ${bbox.cy}`
     }, speed, rotateWheel.bind(null, object, speed, direction));
+  };
+
+  let changingSky = (object, speed, color) => {
+    // Reset
+    object.transform(`t0, 0`);
+    // Animation
+    object.animate({
+      transform: `t0, ${s.node.offsetHeight/2}`
+    }, speed, () => {
+      sky.animate({fill: color}, speed)
+    });
   };
 
   changingSky(sun, 30000, '#222333');
