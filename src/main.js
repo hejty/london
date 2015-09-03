@@ -24,5 +24,16 @@ Snap.load('london.svg', response => {
       ramp1 = response.select('#Ramp1'),
       ramp2 = response.select('#Ramp2');
 
+  let infiniteRotation = (object, x, y, speed) => {
+     // Reset
+    object.transform(`r0, ${x}, ${y}`);
+     // Animation
+    object.animate({
+      transform: `r360, ${x}, ${y}`
+    }, speed, infiniteRotation.bind(null, object, x, y, speed));
+  };
+
+  infiniteRotation(londonEye, '1199.696', '378.059', 60000);
+
   s.append(london);
 });
