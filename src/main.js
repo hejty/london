@@ -42,11 +42,34 @@ Snap.load('london.svg', response => {
     }, speed, movingHorizontal.bind(null, object, speed, direction));
   };
 
+  let rotateWheel = (object, speed, direction = '') => {
+    let bbox = object.getBBox();
+    // Reset
+    object.parent().transform(`r0, ${bbox.cx}, ${bbox.cy}`);
+    // Animation
+    object.parent().animate({
+      transform: `r${direction}360, ${bbox.cx}, ${bbox.cy}`
+    }, speed, rotateWheel.bind(null, object, speed, direction));
+  };
+
+  changingSky(sun, 30000, '#222333');
+
   infiniteRotation(londonEye, '1199.696', '378.059', 60000);
 
+  rotateWheel(wheel1, 900, '-');
+  rotateWheel(wheel2, 900, '-');
   movingHorizontal(bus1, 30000, '-');
+
+  rotateWheel(wheel3, 1100);
+  rotateWheel(wheel4, 1100);
   movingHorizontal(bus2, 40000);
+
+  rotateWheel(wheel5, 700, '-');
+  rotateWheel(wheel6, 700, '-');
   movingHorizontal(bus3, 20000, '-');
+
+  rotateWheel(wheel7, 800);
+  rotateWheel(wheel8, 800);
   movingHorizontal(taxi, 20000);
 
   movingHorizontal(cloud1, 360000);
