@@ -33,7 +33,27 @@ Snap.load('london.svg', response => {
     }, speed, infiniteRotation.bind(null, object, x, y, speed));
   };
 
+  let movingHorizontal = (object, speed, direction = '') => {
+    // Reset
+    object.transform('t0, 0');
+    // Animation
+    object.animate({
+      transform: `t${direction}${s.node.offsetWidth*2}, 0`
+    }, speed, movingHorizontal.bind(null, object, speed, direction));
+  };
+
   infiniteRotation(londonEye, '1199.696', '378.059', 60000);
+
+  movingHorizontal(bus1, 30000, '-');
+  movingHorizontal(bus2, 40000);
+  movingHorizontal(bus3, 20000, '-');
+  movingHorizontal(taxi, 20000);
+
+  movingHorizontal(cloud1, 360000);
+  movingHorizontal(cloud2, 300000, '-');
+  movingHorizontal(cloud3, 360000, '-');
+
+  movingHorizontal(birds, 100000);
 
   s.append(london);
 });
