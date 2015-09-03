@@ -65,6 +65,17 @@ Snap.load('london.svg', response => {
     });
   };
 
+  let rampRamp = (object, direction = '', speed = 10000, angle, x, y) => {
+    object.animate({
+      transform: `r${direction}${angle}, ${x}, ${y}`
+    }, speed, mina.linear);
+  }
+
+  setTimeout(() => {
+    rampRamp(ramp1, '', 10000, 20, 150.62, 753.03);
+    rampRamp(ramp2, '-', 10000, 22.5, 606.52, 753.03);
+  }, 5000);
+
   changingSky(sun, 30000, '#222333');
 
   infiniteRotation(londonEye, '1199.696', '378.059', 60000);
