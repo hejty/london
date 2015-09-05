@@ -29,10 +29,7 @@ Snap.load('london.svg', function (response) {
   sky.attr({ fill: "#178BFF" });
 
   var infiniteRotation = function infiniteRotation(object, x, y, speed) {
-    // Reset
-    object.transform('r0, ' + x + ', ' + y);
-    // Animation
-    object.animate({
+    object.stop().animate({
       transform: 'r360, ' + x + ', ' + y
     }, speed, infiniteRotation.bind(null, object, x, y, speed));
   };
@@ -40,10 +37,7 @@ Snap.load('london.svg', function (response) {
   var movingHorizontal = function movingHorizontal(object, speed) {
     var direction = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
 
-    // Reset
-    object.transform('t0, 0');
-    // Animation
-    object.animate({
+    object.stop().animate({
       transform: 't' + direction + s.node.offsetWidth * 2 + ', 0'
     }, speed, movingHorizontal.bind(null, object, speed, direction));
   };
@@ -52,19 +46,13 @@ Snap.load('london.svg', function (response) {
     var direction = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
 
     var bbox = object.getBBox();
-    // Reset
-    object.parent().transform('r0, ' + bbox.cx + ', ' + bbox.cy);
-    // Animation
-    object.parent().animate({
+    object.stop().parent().animate({
       transform: 'r' + direction + '360, ' + bbox.cx + ', ' + bbox.cy
     }, speed, rotateWheel.bind(null, object, speed, direction));
   };
 
   var changingSky = function changingSky(object, speed, color) {
-    // Reset
-    object.transform('t0, 0');
-    // Animation
-    object.animate({
+    object.stop().animate({
       transform: 't0, ' + s.node.offsetHeight / 2
     }, speed, function () {
       sky.animate({ fill: color }, speed);
@@ -75,7 +63,7 @@ Snap.load('london.svg', function (response) {
     if (direction === undefined) direction = '';
     if (speed === undefined) speed = 10000;
 
-    object.animate({
+    object.stop().animate({
       transform: 'r' + direction + angle + ', ' + x + ', ' + y
     }, speed, mina.linear);
   };
