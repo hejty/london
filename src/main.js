@@ -22,9 +22,32 @@ Snap.load('london.svg', response => {
       wheel7 = response.select('#TaxiWheel1'),
       wheel8 = response.select('#TaxiWheel2'),
       ramp1 = response.select('#Ramp1'),
-      ramp2 = response.select('#Ramp2');
+      ramp2 = response.select('#Ramp2'),
+      waves = response.select('#Waves'),
+      wave = waves.selectAll('path');
 
   sky.attr({fill: "#178BFF"});
+
+  waves.selectAll('path').attr({
+    strokeWidth: 0,
+  });
+
+  wave.forEach(function(el, i) {
+    el.attr({
+      strokeWidth: 9
+    });
+
+    let path = el.attr("path"),
+        length = Snap.path.getTotalLength(path);
+
+    let elAnim = val => {
+      el.attr({
+        path: Snap.path.getSubpath(path, 0, length * val)
+      });
+    };
+
+    Snap.animate(0, 1, elAnim, 15000);
+   });
 
   let infiniteRotation = (object, x, y, speed) => {
      // Reset
